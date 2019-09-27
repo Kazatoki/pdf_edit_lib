@@ -36,18 +36,18 @@ Example
 pdf_split.ps1 -filePath .\test.pdf 
 ```
 
-### drag and drop PDF File and Split
-
-Create a shortcut for the ```pdf_split.ps1``` file and set the following as the shortcut link destination.
-
-```
-powershell -NoProfile -ExecutionPolicy RemoteSigned -File pdf_split.ps1
-```
-
 You can also set the output destination.
 
 ```powershell
 pdf_split.ps1 -filePath .\test.pdf $home\Documents
+```
+
+### drag and drop PDF File and Split Shortcut
+
+Create a shortcut for the ```pdf_split.ps1``` and set the following as the shortcut link destination.
+
+```
+powershell -NoProfile -ExecutionPolicy RemoteSigned -File pdf_split.ps1
 ```
 
 ## pdf_join
