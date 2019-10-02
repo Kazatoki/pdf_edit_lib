@@ -81,7 +81,6 @@ powershell -NoProfile -ExecutionPolicy RemoteSigned -File pdf_split.ps1
 
 ```/lib/pdf_join.ps1``` も同様の方法で設定ができます。
 このショートカットにPDFファイルを複数選択してドロップ & ドロップすることで、簡単にファイルを結合することができます。
-If you drag and drop files on this shortcut, the file is combined.
 
 ```
 powershell -NoProfile -ExecutionPolicy RemoteSigned -File pdf_join.ps1
