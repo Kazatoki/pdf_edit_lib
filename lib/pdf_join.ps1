@@ -40,6 +40,8 @@ function join {
     )
 
     if(check $filePaths){
+        # sort filePaths
+        $filePaths = $filePaths | sort
         # convert FilePath
         $files = @()
         foreach($filePath in $filePaths){
