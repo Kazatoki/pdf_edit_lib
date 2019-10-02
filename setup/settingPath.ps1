@@ -1,8 +1,12 @@
 function result_message {
-    param($result)
+    param($result1, $result2)
     $wsobj = new-object -comobject wscript.shell
-    if($result){
+    if($result1 -and $result2){
         $wsobj.popup("Path setting is complete.") | Out-Null
+    }elseif($result1 -and !($result2)){
+        $wsobj.popup("Path setting is complete.`r`nqpdf Path already exists. ") | Out-Null
+    }elseif(!($result1) -and $result2){
+        $wsobj.popup("Path setting is complete.`r`nBinary Path already exists. ") | Out-Null
     }else{
         $wsobj.popup("Path already exists. Exit without making any changes.") | Out-Null
     }
@@ -30,16 +34,31 @@ function setting_path {
         # if not exist path, add $env:Path
         if(!$existPath){
             Write-Output $setting | Add-Content $profilePath -Encoding Default
-            result_message $true
+            return $true
         }else{
-            result_message $false
+            return $false
         }
     }
 }
 
-# library path
-$profilePath = "$HOME\Documents\WindowsPowerShell\Profile.ps1"
-$path = '"' + (Split-Path $PSScriptRoot -Parent) + '\lib\"'
-$setting = '$env:Path += ' + $path
 
-setting_path $profilePath $setting
+function main {
+    # binary path
+    $profilePath = "$HOME\Documents\WindowsPowerShell\Profile.ps1"
+    $path = '"' + (Split-Path $PSScriptRoot -Parent) + '\bin\"'
+    $setting = '$env:Path += ' + $path
+
+
+    $result1 = setting_path $profilePath $setting
+
+    # qpdf path
+    $profilePath = "$HOME\Documents\WindowsPowerShell\Profile.ps1"
+    $path = '"' + (Split-Path $PSScriptRoot -Parent) + '\plugins\qpdf-9.0.1\bin\"'
+    $setting = '$env:Path += ' + $path
+
+    $result2 = setting_path $profilePath $setting
+
+    result_message $result1 $result2
+}
+
+main
