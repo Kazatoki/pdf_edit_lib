@@ -6,18 +6,25 @@ param(
 function check {
     param($filePath)
     
+    $wsobj = new-object -comobject wscript.shell
+
     # check args exist
     if(!$filePath){
-        Write-Host "please input FilePath at args[0]."
+        $wsobj.popup("Please input FilePath at args[0].") | Out-Null
         return $false
     }
 
     # check path exist
     if(!($filePath | test-path)) {
-        Write-Host "please input correct FilePath at args[0]."
+        $wsobj.popup("Please input correct FilePath.`r`n'$($filePath)' does not exist.") | Out-Null
         return $false
     }
 
+    # check file is PDF
+    if([System.IO.Path]::GetExtension($filePath) -ne ".pdf"){
+        $wsobj.popup("Please input PDF File.`r`n'$($filePath)' is not PDF.") | Out-Null
+        return $false
+    }
     return $true
 }
 
