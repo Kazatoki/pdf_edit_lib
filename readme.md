@@ -77,12 +77,13 @@ Create a shortcut for the ```/lib/pdf_split.ps1``` and set the following as the 
 If you drag and drop a file on this shortcut, the file is split.
 
 ```
-powershell -NoProfile -ExecutionPolicy RemoteSigned -File pdf_split.ps1
+powershell -NoProfile -ExecutionPolicy Unrestricted -File pdf_split.ps1
 ```
 
 ```/lib/pdf_join.ps1``` can be set in the same way.
 If you drag and drop files on this shortcut, the file is combined.
 
 ```
-powershell -NoProfile -ExecutionPolicy RemoteSigned -File pdf_join.ps1
+powershell -NoProfile -ExecutionPolicy Unrestricted -File pdf_join.ps1
 ```
+

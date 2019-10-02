@@ -76,13 +76,13 @@ pdf_split.ps1 .\test1.pdf .\test2.pdf .\test3.pdf
 このショートカットにPDFファイルをドラッグ & ドロップすることで、簡単にファイルを分割して保存することができます。
 
 ```
-powershell -NoProfile -ExecutionPolicy RemoteSigned -File pdf_split.ps1
+powershell -NoProfile -ExecutionPolicy Unrestricted -File pdf_split.ps1
 ```
 
 ```/lib/pdf_join.ps1``` も同様の方法で設定ができます。
 このショートカットにPDFファイルを複数選択してドロップ & ドロップすることで、簡単にファイルを結合することができます。
 
 ```
-powershell -NoProfile -ExecutionPolicy RemoteSigned -File pdf_join.ps1
+powershell -NoProfile -ExecutionPolicy Unrestricted -File pdf_join.ps1
 ```
 
