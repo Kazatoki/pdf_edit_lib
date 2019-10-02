@@ -14,7 +14,7 @@ https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/
 
 ## setting Path(environment variable)
 
-Please add ```~/pdf_edit/lib``` to the Environment Path.
+Please add ```~/pdf_edit/bin``` and ```~/plugins/qpdf-9.0.1/bin``` to the Environment Path.
 
 ```powershell
 cd setup
@@ -25,6 +25,7 @@ By executing this batch file, you can use the following commands from anywhere.
 
 - ```pdf_split.ps1``` : Disassemble specified PDF page by page.
 - ```pdf_join.ps1``` : Combine specified PDFs into one file.
+- ```pdf_unlock.ps1``` : Unlock PDF's Password.
 
 This setting applies only when used with powershell.
 If you want to remove Environment Path, You need to use ```~/pdf_edit/setup/removePath.ps1```.
@@ -68,20 +69,38 @@ pdf_split.ps1 .\test1.pdf .\test2.pdf .\test3.pdf
 
 This command can't set the output destination.
 
+## pdf_unlock.ps1
+
+By specifying a PDF file and password, it can be unlocked password.
+
+```powershell
+pdf_unlock.ps1 -filePath input.pdf [ -destPath destinationFolder ]
+```
+
+### Example
+
+```powershell
+pdf_split.ps1 .\test.pdf 
+```
+
+You can also set the output destination.
+
+```powershell
+pdf_split.ps1 .\test.pdf $home\Documents
+```
 
 # Convenient usage
 
 ## Drag and drop PDF File and Split (Combine)
 
-Create a shortcut for the ```/lib/pdf_split.ps1``` and set the following as the shortcut link destination.
+Create a shortcut for the ```pdf_split.ps1``` and set the following as the shortcut link destination.
 If you drag and drop a file on this shortcut, the file is split.
 
 ```
 powershell -NoProfile -ExecutionPolicy Unrestricted -File pdf_split.ps1
 ```
 
-```/lib/pdf_join.ps1``` can be set in the same way.
-If you drag and drop files on this shortcut, the file is combined.
+```pdf_join.ps1``` and ```pdf_unlock.ps1``` can be set in the same way.
 
 ```
 powershell -NoProfile -ExecutionPolicy Unrestricted -File pdf_join.ps1

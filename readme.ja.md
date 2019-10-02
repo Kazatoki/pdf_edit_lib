@@ -14,7 +14,7 @@ https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/
 
 ## 環境変数を設定します。
 
-```~/pdf_edit/lib``` を環境変数に追加します。
+```~/pdf_edit/bin``` と ```~/plugins/qpdf-9.0.1/bin``` を環境変数に追加します。
 
 ```powershell
 cd setup
@@ -25,6 +25,7 @@ cd setup
 
 - ```pdf_split.ps1``` : Disassemble specified PDF page by page.
 - ```pdf_join.ps1``` : Combine specified PDFs into one file.
+- ```pdf_unlock.ps1``` : Unlock PDF's Password.
 
 上記手順による設定は、Powershellを使用しているときしか反映されません。
 もし設定した環境変数を削除したい場合は、```~/pdf_edit/setup/removePath.ps1``` を実行してください。
@@ -68,19 +69,39 @@ pdf_split.ps1 .\test1.pdf .\test2.pdf .\test3.pdf
 
 ※このコマンドは保存先を指定することができません。
 
+## pdf_unlock.ps1
+
+PDFファイルを指定し、パスワードを入力することで、パスワードを解除することができます。
+
+```powershell
+pdf_unlock.ps1 -filePath input.pdf [ -destPath destinationFolder ]
+```
+
+### Example
+
+```powershell
+pdf_split.ps1 .\test.pdf 
+```
+
+以下のように、保存先の指定もできます。
+
+```powershell
+pdf_split.ps1 .\test.pdf $home\Documents
+```
+
+
 # より便利な使い方
 
 ## ドラッグ & ドロップでPDFファイルを分割（結合）
 
-```/lib/pdf_split.ps1``` を右クリックしてショートカットを作成し、```「リンク先」```を以下の内容に書き換えてください。
+```pdf_split.ps1``` を右クリックしてショートカットを作成し、```「リンク先」```を以下の内容に書き換えてください。
 このショートカットにPDFファイルをドラッグ & ドロップすることで、簡単にファイルを分割して保存することができます。
 
 ```
 powershell -NoProfile -ExecutionPolicy Unrestricted -File pdf_split.ps1
 ```
 
-```/lib/pdf_join.ps1``` も同様の方法で設定ができます。
-このショートカットにPDFファイルを複数選択してドロップ & ドロップすることで、簡単にファイルを結合することができます。
+```pdf_join.ps1``` と ```pdf_unlock.ps1``` も同様の方法で設定ができます。
 
 ```
 powershell -NoProfile -ExecutionPolicy Unrestricted -File pdf_join.ps1
