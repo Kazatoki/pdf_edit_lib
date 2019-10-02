@@ -37,14 +37,14 @@ function setting_path {
 function main {
     # library path
     $profilePath = "$HOME\Documents\WindowsPowerShell\Profile.ps1"
-    $path = '"' + (Split-Path $PSScriptRoot -Parent) + '\bin\"'
+    $path = '";' + (Split-Path $PSScriptRoot -Parent) + '\bin\;"'
     $setting = '$env:Path += ' + $path
 
     $result1 = setting_path $profilePath $setting
 
     # binary path
     $profilePath = "$HOME\Documents\WindowsPowerShell\Profile.ps1"
-    $path = '"' + (Split-Path $PSScriptRoot -Parent) + '\plugins\qpdf-9.0.1\bin\"'
+    $path = '";' + (Split-Path $PSScriptRoot -Parent) + '\plugins\qpdf-9.0.1\bin\;"'
     $setting = '$env:Path += ' + $path
 
     $result2 = setting_path $profilePath $setting

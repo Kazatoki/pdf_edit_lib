@@ -1,13 +1,17 @@
 function set-shortcut {
     param ( [string]$SourceLnk, [string]$DestinationPath, [string]$Args, [string]$WorkingPath )
 
-    $WshShell = New-Object -comObject WScript.Shell
-    $Shortcut = $WshShell.CreateShortcut($SourceLnk)
-    $Shortcut.TargetPath = """$DestinationPath"""
-    $Shortcut.Arguments = $Args
-    $Shortcut.WorkingDirectory = $WorkingPath
-    $Shortcut.Save()
-
+    try {
+        $WshShell = New-Object -comObject WScript.Shell
+        $Shortcut = $WshShell.CreateShortcut($SourceLnk)
+        $Shortcut.TargetPath = """$DestinationPath"""
+        $Shortcut.Arguments = $Args
+        $Shortcut.WorkingDirectory = $WorkingPath
+        $Shortcut.Save()
+        return $true
+    }catch{
+        return $false
+    }
 }
 
 $folderPath = (Split-Path $PSScriptRoot -Parent)
@@ -24,6 +28,18 @@ $exePath = "$($PSHOME)\powershell.exe"
 
 $WorkingPath = $folderPath + "\bin\"
 
+$createCheck = $true
 for($i=0; $i -lt $shortcutLinks.Length; $i++){
-    set-shortcut $shortcutLinks[$i] $exePath $exeArgs[0] $WorkingPath
+    if(!(set-shortcut $shortcutLinks[$i] $exePath $exeArgs[0] $WorkingPath)) {
+        $createCheck = $false
+        break
+    }
+}
+
+
+$wsobj = new-object -comobject wscript.shell
+if($createCheck) {
+    $wsobj.popup("Create Shortcut Icon is complete.") | Out-Null
+}else{
+    $wsobj.popup("Error occured. Can't Create Shortcut Icon.") | Out-Null
 }

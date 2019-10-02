@@ -20,7 +20,7 @@ function setting_path {
         New-Item -path $profilePath -type file -force
         # add $env:Path
         Write-Output $setting | Add-Content $profilePath -Encoding Default
-        result_message $true
+        return $true
     }else{
         # confirm path exist
         $existPath = $false
@@ -45,7 +45,7 @@ function setting_path {
 function main {
     # binary path
     $profilePath = "$HOME\Documents\WindowsPowerShell\Profile.ps1"
-    $path = '"' + (Split-Path $PSScriptRoot -Parent) + '\bin\"'
+    $path = '";' + (Split-Path $PSScriptRoot -Parent) + '\bin\;"'
     $setting = '$env:Path += ' + $path
 
 
@@ -53,7 +53,7 @@ function main {
 
     # qpdf path
     $profilePath = "$HOME\Documents\WindowsPowerShell\Profile.ps1"
-    $path = '"' + (Split-Path $PSScriptRoot -Parent) + '\plugins\qpdf-9.0.1\bin\"'
+    $path = '"' + (Split-Path $PSScriptRoot -Parent) + '\plugins\qpdf-9.0.1\bin\;"'
     $setting = '$env:Path += ' + $path
 
     $result2 = setting_path $profilePath $setting
