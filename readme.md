@@ -15,24 +15,24 @@ https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/
 ## setting Path(environment variable)
 
 Please add ```~/pdf_edit/bin``` and ```~/plugins/qpdf-9.0.1/bin``` to the Environment Path.
-
-```powershell
-cd setup
-.\settingPath.ps1
-```
+You can use ```~/setup/installer.vbs```. Please double click that vbs file.
 
 By executing this batch file, you can use the following commands from anywhere.
 
 - ```pdf_split.ps1``` : Disassemble specified PDF page by page.
 - ```pdf_join.ps1``` : Combine specified PDFs into one file.
-- ```pdf_unlock.ps1``` : Unlock PDF's Password.
+- ```pdf_unlock.ps1``` : Unlock PDF's Password.(Need to input password)
 
 This setting applies only when used with powershell.
-If you want to remove Environment Path, You need to use ```~/pdf_edit/setup/removePath.ps1```.
+If you want to remove Environment Path, You need to use ```~/setup/uninstaller.vbs```.
 
 # How to use
 
-## pdf_split.ps1
+There are "command line" and "drag and drop" (recommended).
+
+## Using the command line
+
+### pdf_split.ps1
 
 By specifying a PDF file, it can be broken apart page by page.
 
@@ -40,7 +40,7 @@ By specifying a PDF file, it can be broken apart page by page.
 pdf_split.ps1 -filePath input.pdf [ -destPath destinationFolder ]
 ```
 
-### Example
+#### Example
 
 ```powershell
 pdf_split.ps1 .\test.pdf 
@@ -52,16 +52,17 @@ You can also set the output destination.
 pdf_split.ps1 .\test.pdf $home\Documents
 ```
 
-## pdf_join.ps1
+### pdf_join.ps1
 
 Combine specified PDFs into one file.
 The created file is saved in the same folder as the referenced file with a symbol (```"_combine"```) at the end of the file name.
+The page order of the output PDF will be ascending order of the specified file names.
 
 ```powershell
 pdf_join.ps1 input1.pdf input2.pdf [ input3.pdf ... ]
 ```
 
-### Example
+#### Example
 
 ```powershell
 pdf_split.ps1 .\test1.pdf .\test2.pdf .\test3.pdf
@@ -69,7 +70,7 @@ pdf_split.ps1 .\test1.pdf .\test2.pdf .\test3.pdf
 
 This command can't set the output destination.
 
-## pdf_unlock.ps1
+### pdf_unlock.ps1
 
 By specifying a PDF file and password, it can be unlocked password.
 
@@ -77,7 +78,7 @@ By specifying a PDF file and password, it can be unlocked password.
 pdf_unlock.ps1 -filePath input.pdf [ -destPath destinationFolder ]
 ```
 
-### Example
+#### Example
 
 ```powershell
 pdf_split.ps1 .\test.pdf 
@@ -89,20 +90,11 @@ You can also set the output destination.
 pdf_split.ps1 .\test.pdf $home\Documents
 ```
 
-# Convenient usage
-
 ## Drag and drop PDF File and Split (Combine)
 
-Create a shortcut for the ```pdf_split.ps1``` and set the following as the shortcut link destination.
-If you drag and drop a file on this shortcut, the file is split.
 
-```
-powershell -NoProfile -ExecutionPolicy Unrestricted -File pdf_split.ps1
-```
+Use the shortcuts created during installation( ```~/pdf_split.ps1```, ```~/pdf_join.ps1```, ```~/pdf_unlock.ps1```).
 
-```pdf_join.ps1``` and ```pdf_unlock.ps1``` can be set in the same way.
+You can split, join, and unlock passwords by dragging and dropping PDF files on each shortcut icon.
 
-```
-powershell -NoProfile -ExecutionPolicy Unrestricted -File pdf_join.ps1
-```
-
+The output destination of the file is created in the same location as the dragged and dropped file.
