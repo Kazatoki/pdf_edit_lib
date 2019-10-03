@@ -36,7 +36,7 @@ function inputPass {
     return [System.Runtime.InteropServices.Marshal]::PtrToStringAuto([System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($securestring))
 }
 
-function split {
+function unlock {
     param(
         [string]$filePath,
         [string]$destPath
@@ -72,4 +72,4 @@ function split {
     }
 }
 
-split $filePath $destPath
+unlock $filePath $destPath
