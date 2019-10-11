@@ -1,11 +1,11 @@
 function set-shortcut {
-    param ( [string]$SourceLnk, [string]$DestinationPath, [string]$Args, [string]$WorkingPath )
+    param ( [string]$SourceLnk, [string]$DestinationPath, [string]$exeArgs, [string]$WorkingPath )
 
     try {
         $WshShell = New-Object -comObject WScript.Shell
         $Shortcut = $WshShell.CreateShortcut($SourceLnk)
         $Shortcut.TargetPath = """$DestinationPath"""
-        $Shortcut.Arguments = $Args
+        $Shortcut.Arguments = $exeArgs
         $Shortcut.WorkingDirectory = $WorkingPath
         $Shortcut.Save()
         return $true
