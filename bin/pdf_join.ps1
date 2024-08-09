@@ -51,9 +51,9 @@ function join {
         $inputFiles = $null
         foreach($file in $files){
             if($inputFiles -eq $null){
-                $inputFiles = $file
+                $inputFiles = "'$file'"
             }else{
-                $inputFiles = "$inputFiles $file"
+                $inputFiles = "$inputFiles '$file'"
             }
         }
         $outputFile = (Split-Path $filePaths[0] -Parent) + "\" +  ([System.IO.Path]::GetFileNameWithoutExtension((Split-Path $filePaths[0] -Leaf))) + "_combine.pdf"
